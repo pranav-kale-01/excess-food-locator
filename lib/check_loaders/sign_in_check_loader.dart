@@ -46,11 +46,11 @@ class _SignInCheckLoaderState extends State<SignInCheckLoader> {
       await hiveService.init();
       bool data = await hiveService.isExists(boxName: 'user_id');
 
-      debugPrint( data.toString() );
-
       if( data ) {
         var box = await hiveService.openHiveBox('user_id');
         String uid = box.values.first;
+
+        debugPrint( "box - " + box.values.toString() );
 
         // checking if the current uid is registered on firebase
         final data = await FirebaseOperations.getProductById(

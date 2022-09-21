@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -33,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
   static const LatLng _center = LatLng(45.521563, -122.677433);
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-  Map<MarkerId, Marker> markers = <MarkerId, Marker>{};
+  Set<Marker> markers = <Marker>{};
 
   void _onMapCreated(GoogleMapController controller) {
     _controller = controller;
@@ -55,16 +56,13 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             14
           )
-      );
-
-      setMarkers();
+      ).then((value) => setMarkers() );
     }
   }
 
 
   Future<void> setMarkers() async {
-    // print( currentLocation!.latitude! - 0.00005430741);
-    // print( currentLocation!.longitude! - 0.00005430741 );
+    markers.clear();
 
     // getting all the location near the users location
     final ref = await FirebaseOperations.getMarkersByUserLocation(
@@ -77,9 +75,13 @@ class _HomeScreenState extends State<HomeScreen> {
       for( var i in ref ) {
         final temp = i.data();
 
+        debugPrint( i.id );
+
         final marker = Marker(
-          markerId: MarkerId( temp['item_name']),
-          position: LatLng( temp['latitude'], temp['longitude'] ),
+          markerId: MarkerId( i.id ),
+          position: LatLng( temp['geoPoint'].latitude, temp['geoPoint'].longitude ),
+          icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueOrange),
+
           onTap: () {
             setState(() {
               showInfoDialog = true;
@@ -91,9 +93,11 @@ class _HomeScreenState extends State<HomeScreen> {
         );
 
         setState(() {
-          markers[MarkerId('place_name')] = marker;
+          markers.add(marker);
         });
       }
+
+      debugPrint( markers.toString() );
     }
   }
 
@@ -113,7 +117,12 @@ class _HomeScreenState extends State<HomeScreen> {
               target: _center,
               zoom: 11.0,
             ),
-            markers: markers.values.toSet(),
+            markers: markers,
+            onTap: (_) {
+              setState(() {
+                showInfoDialog = false;
+              });
+            },
           ),
           SafeArea(
             child: SizedBox(
@@ -148,7 +157,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       Container(
                         height: 50,
-                        width: mediaQuery.size.width - 80 ,
+                        width: mediaQuery.size.width - 135 ,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20.0,),
                           color: Colors.white,
@@ -186,6 +195,30 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                             ),
                           ],
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () async {
+                          await setMarkers();
+                        },
+                        child: Container(
+                          height: 50,
+                          width: 50,
+                          margin: const EdgeInsets.all( 8.0, ),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20.0,),
+                              color: Colors.white,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.shade400,
+                                  offset: const Offset( 1, 4),
+                                  blurRadius: 2,
+                                )
+                              ]
+                          ),
+                          child: const Icon(
+                            Icons.refresh,
+                          ),
                         ),
                       ),
                     ],

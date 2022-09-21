@@ -190,7 +190,7 @@ class _ChooseServiceState extends State<ChooseService> {
 
                             if( result.isNotEmpty ) {
                               // storing the user's uid
-                              hiveService.addBoxes( [result] , "user_id" );
+                              hiveService.setValue( result , "user_id" );
 
                               // redirecting to the food status screen
                               Navigator.of(context).pushReplacement(

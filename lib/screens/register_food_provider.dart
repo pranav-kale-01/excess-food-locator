@@ -417,7 +417,7 @@ class _RegisterFoodProviderState extends State<RegisterFoodProvider> {
                                   Navigator.of(context).pop();
 
                                   // storing the user's uid
-                                  hiveService.addBoxes( [result] , "user_id" );
+                                  hiveService.setValue( result , "user_id" );
 
                                   // redirecting to the food status screen
                                   Navigator.of(context).pushReplacement(

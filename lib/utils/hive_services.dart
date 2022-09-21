@@ -32,7 +32,7 @@ class HiveServices {
   }
 
   /// overwrites the old value of the box with the new value
-  void setValue( Map<dynamic, dynamic> item, String boxName ) async {
+  void setValue( var item, String boxName ) async {
     final openBox = await Hive.openBox(boxName);
 
     // truncating the box first

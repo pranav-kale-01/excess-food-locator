@@ -6,9 +6,11 @@ import 'package:food_app/screens/sign_up_screen.dart';
 import 'package:food_app/utils/authentication.dart';
 import 'package:food_app/utils/circle_painter.dart';
 import 'package:food_app/utils/firebase_operations.dart';
+import 'package:food_app/utils/hive_services.dart';
 import 'package:food_app/utils/normal_dialog.dart';
 
 class SignInScreen extends StatelessWidget {
+  HiveServices hiveService = HiveServices();
   SignInScreen({Key? key}) : super(key: key);
 
 
@@ -190,18 +192,26 @@ class SignInScreen extends StatelessWidget {
 
                           User? user = await Authentication.signInWithGoogle(context: context);
 
+                          debugPrint("user - " + user!.uid );
+
+
                           // checking if the current uid is registered on firebase
                           final data = await FirebaseOperations.getProduct(
                             "users",
-                            user!.email!
+                            user.email!
                           );
+
+                          final userData = data!.data() as Map<String, dynamic>;
+
+                          // also saving the user to hive services for next load up
+                          hiveService.setValue( data.id , "user_id" );
 
                           if( data != null ) {
                             if( data['role'] == "food_provider" ) {
                               Navigator.of(context).pushReplacement(
                                   MaterialPageRoute(
                                     builder: (context) => FoodStatusScreen(
-                                      userDetails: data,
+                                      userDetails: userData,
                                       userEmail: user.email!,
                                     ),
                                   )

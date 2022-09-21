@@ -49,8 +49,7 @@ class FirebaseOperations {
           'type_of_food': typeOfFood,
           'expected_time': expectedPickupTime,
           'item_name': itemName,
-          'latitude': lat,
-          'longitude': lon,
+          'geoPoint': GeoPoint(lat!, lon!),
         });
 
         return id;
@@ -127,17 +126,29 @@ class FirebaseOperations {
   }
 
   static Future<List<QueryDocumentSnapshot<Map<String, dynamic>>>?> getMarkersByUserLocation( String collection, double latitude, double longitude ) async {
+    double lowerLat = latitude - (0.0144927536231884);
+    double lowerLon = longitude - (0.0144927536231884);
+
+    double greaterLat = latitude + (0.0144927536231884);
+    double greaterLon = longitude + (0.0144927536231884);
+
+    GeoPoint lesserGeoPoint = GeoPoint(lowerLat, lowerLon);
+    GeoPoint greaterGeoPoint = GeoPoint(greaterLat, greaterLon);
+
     var ref = await FirebaseFirestore.instance
         .collection(collection)
-        .where(
-          'latitude',
-          isGreaterThan: latitude - 0.00005430741,
-        ).get();
+        .where("geoPoint", isGreaterThanOrEqualTo: lesserGeoPoint)
+        .where("geoPoint", isLessThanOrEqualTo: greaterGeoPoint)
+        .get();
+
+    // var ref = await FirebaseFirestore.instance
+    //     .collection(collection)
+    //     .get();
 
     return ref.docs;
   }
 
-  static Future<Map<String, dynamic>?> getProduct( String collection, String email ) async {
+  static Future<QueryDocumentSnapshot?> getProduct( String collection, String email ) async {
     var ref = await FirebaseFirestore.instance
         .collection(collection)
         .where(
@@ -147,7 +158,7 @@ class FirebaseOperations {
         .get();
 
     if( ref.docs.isNotEmpty ) {
-      return ref.docs.first.data();
+      return ref.docs.first;
     }
     return null;
   }
