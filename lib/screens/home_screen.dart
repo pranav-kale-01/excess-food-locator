@@ -1,14 +1,17 @@
+import 'dart:ui' as ui;
 import 'dart:async';
+import 'dart:typed_data';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:food_app/utils/firebase_operations.dart';
 import 'package:food_app/utils/location.dart';
 import 'package:food_app/widgets/nav_drawer/home_screen_nav_drawer.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomeScreen extends StatefulWidget {
   final User user;
@@ -28,6 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
   String dialogItemName = "";
   String dialogExpectedTime = "";
   String dialogTypeOfFood = "";
+  String dialogContactNumber = "";
 
   bool showInfoDialog = false;
 
@@ -43,6 +47,13 @@ class _HomeScreenState extends State<HomeScreen> {
     relocateCamera();
   }
 
+  Future<Uint8List> getBytesFromAsset(String path, int width) async {
+    ByteData data = await rootBundle.load(path);
+    ui.Codec codec = await ui.instantiateImageCodec(data.buffer.asUint8List(), targetWidth: width);
+    ui.FrameInfo fi = await codec.getNextFrame();
+    return (await fi.image.toByteData(format: ui.ImageByteFormat.png))!.buffer.asUint8List();
+  }
+
   Future<void> relocateCamera() async {
     // getting user current location
     currentLocation = await GeoLocation.getLoc();
@@ -56,13 +67,34 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             14
           )
-      ).then((value) => setMarkers() );
+      ).then((value) async {
+        await setMarkers();
+      });
     }
   }
 
 
   Future<void> setMarkers() async {
     markers.clear();
+
+    try{
+      final Uint8List markerIcon = await getBytesFromAsset('assets/current_user_location.png', 50);
+      final Marker marker = Marker(
+        icon: BitmapDescriptor.fromBytes(markerIcon),
+        markerId: const MarkerId("current_user_location"),
+        position: LatLng( currentLocation!.latitude!, currentLocation!.longitude! ),
+      );
+
+      setState(() {
+        markers.add(
+          marker
+        );
+      });
+    }
+    catch( e,s ) {
+      print( e);
+      print( s );
+    }
 
     // getting all the location near the users location
     final ref = await FirebaseOperations.getMarkersByUserLocation(
@@ -80,7 +112,7 @@ class _HomeScreenState extends State<HomeScreen> {
         final marker = Marker(
           markerId: MarkerId( i.id ),
           position: LatLng( temp['geoPoint'].latitude, temp['geoPoint'].longitude ),
-          icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueOrange),
+          icon: BitmapDescriptor.defaultMarkerWithHue( BitmapDescriptor.hueOrange ),
 
           onTap: () {
             setState(() {
@@ -88,6 +120,9 @@ class _HomeScreenState extends State<HomeScreen> {
               dialogItemName = temp['item_name'];
               dialogExpectedTime = temp['expected_time'];
               dialogTypeOfFood = temp['type_of_food'];
+              if( temp['contact_number'] != null ) {
+                dialogContactNumber = temp['contact_number'];
+              }
             });
           }
         );
@@ -394,7 +429,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                         ]
                                     ),
                                     child: ElevatedButton(
-                                      onPressed: () {},
+                                      onPressed: () async {
+                                        final url = "tel:$dialogContactNumber";
+                                        if ( await canLaunchUrl(Uri.parse(url) ) )  {
+                                        await launchUrl( Uri.parse( url ) );
+                                        } else {
+                                        throw 'Could not launch $url';
+                                        }
+                                      },
                                       style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                                       child: const Text(
                                         'Contact',

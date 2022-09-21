@@ -964,6 +964,7 @@ class _FoodStatusScreenState extends State<FoodStatusScreen> {
                                             'item_name': itemNameController.text.isEmpty ? "-" : itemNameController.text,
                                             "latitude" : widget.userDetails['location'].split(",").first,
                                             "longitude" : widget.userDetails['location'].split(",").last,
+                                            "contact_number" : widget.userDetails['contact_number'],
                                           },
                                           widget.userEmail,
                                         );

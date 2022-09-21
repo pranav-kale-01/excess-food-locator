@@ -26,7 +26,7 @@ class HomeScreenNavigationDrawer extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 4.0),
                     child: Text(
-                      "Food Hunt",
+                      "Yummy Donation",
                       style: TextStyle(
                         fontFamily: "Baumans",
                         fontWeight: FontWeight.w900,
