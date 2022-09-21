@@ -27,10 +27,19 @@ The current version of the application is a pre-release and is is intended to us
 
 ## App Screenshots:
 
-<img src="https://user-images.githubusercontent.com/70502672/191471043-02695ba9-fa2a-4dbf-ac0b-fb64e7159a1b.jpeg" width="200">   <img src="https://user-images.githubusercontent.com/70502672/191471051-4d3095ea-af3e-4fa5-822c-ddfcffc26edf.jpeg" width="200">   <img src="https://user-images.githubusercontent.com/70502672/191471057-397f93c4-ff49-441d-901f-660b0b37e059.jpeg" width="200">   <img src="https://user-images.githubusercontent.com/70502672/191471065-3b973c68-c99d-4321-92b1-bfa9584151f3.jpeg" width="200">
+### Login / Signup:
+<img src="https://user-images.githubusercontent.com/70502672/191471043-02695ba9-fa2a-4dbf-ac0b-fb64e7159a1b.jpeg" width="200">   <img src="https://user-images.githubusercontent.com/70502672/191471051-4d3095ea-af3e-4fa5-822c-ddfcffc26edf.jpeg" width="200">   
 
-<img src="https://user-images.githubusercontent.com/70502672/191471072-2391497d-9eb6-494f-a8a3-acc30e7c00ea.jpeg" width="200">   <img src="https://user-images.githubusercontent.com/70502672/191471082-e293482c-edc1-474e-b7ea-694b40103ad2.jpeg" width="200">  <img src="https://user-images.githubusercontent.com/70502672/191471086-0c0b91de-9884-4d5a-8d3d-5c382a1298e0.jpeg" width="200">  <img src="https://user-images.githubusercontent.com/70502672/191471091-8a28e939-9eca-4d96-b8b4-35f233def876.jpeg" width="200">
+### Account creation:
+<img src="https://user-images.githubusercontent.com/70502672/191471057-397f93c4-ff49-441d-901f-660b0b37e059.jpeg" width="200"> <img src="https://user-images.githubusercontent.com/70502672/191471082-e293482c-edc1-474e-b7ea-694b40103ad2.jpeg" width="200">  <img src="https://user-images.githubusercontent.com/70502672/191471065-3b973c68-c99d-4321-92b1-bfa9584151f3.jpeg" width="200"> 
 
+### Service Type: 
+<img src="https://user-images.githubusercontent.com/70502672/191471072-2391497d-9eb6-494f-a8a3-acc30e7c00ea.jpeg" width="200">  
+
+### Adding / Editing food details:
+<img src="https://user-images.githubusercontent.com/70502672/191471086-0c0b91de-9884-4d5a-8d3d-5c382a1298e0.jpeg" width="200">  <img src="https://user-images.githubusercontent.com/70502672/191471091-8a28e939-9eca-4d96-b8b4-35f233def876.jpeg" width="200">
+
+### Location and Order details:
 <img src="https://user-images.githubusercontent.com/70502672/191471018-79fea53d-edd8-42ec-82dc-b7f99c0ffad1.jpeg" width="200"> <img src="https://user-images.githubusercontent.com/70502672/191471035-2ff4b4e5-bb57-4efe-971d-c4d7316fb51d.jpeg" width="200"> <img src="https://user-images.githubusercontent.com/70502672/191471098-7205738b-a288-439b-8db2-a213c96f7026.jpeg" width="200">
 
 ## Built With
