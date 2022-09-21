@@ -7,7 +7,6 @@
 
   <p align="center">
     Excess Food Locator helps people having excess food connect with other resources and distributors. This application is based on a map view to provide users with quicker and easier acess to resources.
-    .
     <br />
     <br />
     <!-- demo video here -->
