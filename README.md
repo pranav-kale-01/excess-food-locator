@@ -2,6 +2,7 @@
 
 <br />
 <div align="center">
+<img src="https://user-images.githubusercontent.com/78294692/191543806-a09b1360-acb8-4f2a-9ab4-5a9f85778025.jpg" width="150">
   <h1 align="center">Excess Food Locator</h1>
 
   <p align="center">
