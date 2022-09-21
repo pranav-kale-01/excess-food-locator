@@ -15,9 +15,12 @@
     <a href="https://github.com/pranav-kale-01/excess-food-locator/issues">Report Bug</a>
     ·
     <a href="https://github.com/pranav-kale-01/excess-food-locator/issues">Request Feature</a>
+    <br />
+    <br />
   </p>
 </div>
 
+https://user-images.githubusercontent.com/70502672/191589577-7f018b8b-2cd3-4cb8-a9ca-e9ead65466ce.mp4
 
 ## ⚠ Note:
 
