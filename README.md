@@ -59,8 +59,6 @@ The current version of the application is a pre-release and is is intended to us
 Head over the releases tab for this project and download the (.apk) file for the latest release.
 
 
-
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Contributing
@@ -77,3 +75,10 @@ Don't forget to give the project a star! Thanks again!
 5. Open a Pull Request
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+## Contributors 
+
+<a href="https://github.com/<your-username>/Python/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=pranav-kale-01/excess-food-locator"/>
+</a>
