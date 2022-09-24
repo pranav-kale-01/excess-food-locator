@@ -25,7 +25,7 @@ https://user-images.githubusercontent.com/70502672/191589577-7f018b8b-2cd3-4cb8-
 
 ### *The application is still under development and this is a pre-release version!*
 
-The current version of the application is a pre-release and is is intended to use as a proof of conecpt. Developers assume no liability and are not responsible for any misuse or damage caused by the current version of the application.
+The current version of the application is a pre-release and is intended to use as a proof of conecpt. Developers assume no liability and are not responsible for any misuse or damage caused by the current version of the application.
 
 ## App Screenshots:
 
