@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:975543764084:android:56db090d9befc5e598fd21",
         "android_client_info": {
-          "package_name": "com.example.food_app"
+          "package_name": "com.yummydonation.food_app"
         }
       },
       "oauth_client": [
@@ -17,7 +17,7 @@
           "client_id": "975543764084-ui7achqabk5hgffadik809piq1eltgq1.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.food_app",
+            "package_name": "com.yummydonation.food_app",
             "certificate_hash": "57c4239ee9ead7db52beb6ecc5db277f8c3f7714"
           }
         },
