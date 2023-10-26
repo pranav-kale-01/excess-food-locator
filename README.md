@@ -7,6 +7,9 @@
 
   <p align="center">
     Excess Food Locator helps people having excess food connect with other resources and distributors. This application is based on a map view to provide users with quicker and easier acess to resources.
+    <br />  
+    <br />  
+    Winners of <a href="https://code-with-harnoor.devpost.com"> Code with Harnoor Hackathon </a> for best UI/UX designed app.
     <br />
     <br />
     <a href="https://youtu.be/3QqH0R92WKA">View Demo</a>
